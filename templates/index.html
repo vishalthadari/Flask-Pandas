@@ -1,0 +1,95 @@
+<html>
+
+<head>
+<title>Elucidata Assignment</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 150px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.space {
+  margin: 1rem 1rem 0 0
+}
+
+#task1,#task3,#task2 {
+  display: none;
+}​
+
+</style>
+</head>
+
+<body>
+
+    <h1>Metabolite Filter/Retention Time</h1>
+    <div>
+      <button onclick="javascript:showTask1();" style='margin-right:16px'>Create child-datasets of PC, LPC, Plasmogen</button>
+      <button onclick="javascript:showTask2();" style='margin-right:16px'>Retention Time Roundoff</button>
+      <button onclick="javascript:showTask3();">Mean</button>
+    </div>
+    <br>
+    <div>
+      {% if validate == True  %}  See the files in Results folder for Task1! {% endif %}
+      {% if validate1 == True %}  See the file in Results folder for Task2! {% endif %}
+      {% if validate2 == True %}  See the file in Results folder for Task3!  {% endif %}
+    </div>
+    <br>
+    <div class="row">
+      <div class="column" id="task1" style="background-color:#aaa;">
+        <h4> Child DataSets</h4>
+        <form action="/task1" method="post" enctype="multipart/form-data">
+          <input type="file" name="excel" value="Upload">
+          <input type="submit" class="space" value="Get Excel Files"> {% if validate == True  %}  See the files in Results folder or Upload new excel! {% endif %}
+        </form>
+      </div>
+    <div class="column" id="task2" style="background-color:#bbb;">
+      <h4> Retention Time RoundOFF</h4>
+      <form action="/task2" method="post" enctype="multipart/form-data">
+        <input type="file" name="excel" value="Upload">
+        <input type="submit" class="space" value="Get Excel File"> {% if validate1 == True %}  See the file in Results folder  {% endif %}
+      </form>
+    </div>
+    <div class="column" id="task3" style="background-color:#ccc;">
+      <h4> Mean</h4>
+      <form action="/task3" method="post" enctype="multipart/form-data">
+        <input type="file" name="excel" value="Upload">
+        <input type="submit" class="space" value="Get Excel File"> {% if validate2 == True %}  See the file in Results folder  {% endif %}
+      </form>
+    </div>
+  </div>
+
+</body>
+
+<script type="text/javascript">
+  function showTask1() {
+    let childSet = document.getElementById('task1');
+    childSet.style.display = "block";
+  }
+
+  function showTask2() {
+    let retentionTime = document.getElementById('task2');
+    retentionTime.style.display = "block";
+  }
+
+  function showTask3() {
+    let mean = document.getElementById('task3');
+    mean.style.display = "block";
+  }
+
+</script>
+
+</html>
